@@ -6,25 +6,23 @@
 
 */
 
-//declarando uma constante (variavel) chamada express
+
 //carrego a lib do express (servidor da aplicacao) - importando o objeto (a biblioteca)
 const express = require('express') 
-
 //importa as rotas
-const routes = require('./routes')
-
-//const Customer = require('./customers')
-//const customers = []
-
+//const routes = require('./routes')
+const customerRoutes = require('./customers/customers-routes')
+const productRoutes = require('./products/products-routes')
 //instanciando um novo servidor 
-const app = express() /*estah startando o objeto express e foi atribuida numa variavel chamada app */
-
+const app = express() /*está startando o objeto express e foi atribuida numa variavel chamada app */
 //habilita o uso do json
 app.use(express.json())
-
-//isso eh necessario para o express entender que eh pra ser USADO o routes dentro de suas rotas, ou seja,
 //importa as rotas para o servidor (app.js)
-app.use('/', routes) 
+app.use(express.json())
+app.use('/', [
+    customerRoutes, 
+    productRoutes
+])
 
 // crio uma constante (variavel) para definir que porta o servidor rodarah 
 const port = 3000 /* foi criada uma variavel chamada porta e adicionado o valor de 3000, mas poderia ser qualquer outro valor, menos 8080 pois eh a porta default da internet */
